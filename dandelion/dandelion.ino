@@ -16,6 +16,8 @@ void loop() {
     float blow = flowBlow * 23.3;  //아래에서 구한 공식을 대입
     if(blow>=0.0&&blow<0.3){//level1
       blendix.setCoordinates(1, 1, 1, 1);
+      blendix.setCoordinates(2, 0, 0, 0);
+      blendix.setCoordinates(3, 0, 0, 0);
       blendix.setText("level1");
       String Output = blendix.getFormattedOutput();
       Serial.println(Output);
@@ -23,6 +25,7 @@ void loop() {
     else if(blow>=0.3 && blow<0.5){//level2
       blendix.setCoordinates(1, 2, 2, 2);
       blendix.setCoordinates(2, 1, 1, 1);
+      blendix.setCoordinates(3, 0, 0, 0);
       blendix.setText("level2");
       String Output = blendix.getFormattedOutput();
       Serial.println(Output);
