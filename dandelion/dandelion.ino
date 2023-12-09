@@ -3,6 +3,7 @@
 BlendixSerial blendix;
 int windspeedPin = A0;
 
+
 void setup() {
   Serial.begin(9600);
 }
@@ -11,10 +12,14 @@ void loop() {
  
   int flowSensor = analogRead(windspeedPin);
   float flowBlow = flowSensor/1023.0*1.2;
+  float graterB = -0.36;
+  float percentage = 0;
 
   if(0.0 <flowBlow){
     float blow = flowBlow * 23.3;  //아래에서 구한 공식을 대입
     if(blow>=0.0&&blow<0.3){//level1
+      graterB = -0.5;
+      float percentage = 34;
       blendix.setCoordinates(1, 1, 1, 1);
       blendix.setCoordinates(2, 0, 0, 0);
       blendix.setCoordinates(3, 0, 0, 0);
@@ -23,6 +28,8 @@ void loop() {
       Serial.println(Output);
     }
     else if(blow>=0.3 && blow<0.5){//level2
+      graterB = 0.05;
+      float percentage = 67;
       blendix.setCoordinates(1, 2, 2, 2);
       blendix.setCoordinates(2, 1, 1, 1);
       blendix.setCoordinates(3, 0, 0, 0);
@@ -31,6 +38,8 @@ void loop() {
       Serial.println(Output);
     }
     else if(blow >= 0.5){//level3
+      graterB = 0.2;
+      float percentage = 100;
       blendix.setCoordinates(1, 3, 3, 3);
       blendix.setCoordinates(2, 2, 2, 2);
       blendix.setCoordinates(3, 1, 1, 1);
@@ -49,5 +58,5 @@ void loop() {
   }
 
 
-  delay(1000);
+  delay(500);
 }
